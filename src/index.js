@@ -3,7 +3,7 @@ const core = require('@actions/core');
 const slackSend = require('./slack-github-action/src/slack-send');
 
 function generatePayload() {
-  const repo_url = `${github.context.serverUrl}/${github.repo.owner}/${github.repo.repo}`;
+  const repo_url = `${github.context.serverUrl}/${github.context.repo.owner}/${github.context.repo.repo}`;
   const shart_short = github.context.sha.substring(0,7);
 
   const job_status = process.env.JOB_STATUS;
