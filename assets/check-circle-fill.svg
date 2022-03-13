@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 12 12"
+   width="12"
+   height="12"
+   version="1.1"
+   id="svg970"
+   sodipodi:docname="check-circle-fill.svg"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs974" />
+  <sodipodi:namedview
+     id="namedview972"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="20.233436"
+     inkscape:cx="8.822031"
+     inkscape:cy="6.3014507"
+     inkscape:window-width="1296"
+     inkscape:window-height="811"
+     inkscape:window-x="199"
+     inkscape:window-y="137"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg970" />
+  <path
+     fill-rule="evenodd"
+     d="M6 0a6 6 0 100 12A6 6 0 006 0zm-.705 8.737L9.63 4.403 8.392 3.166 5.295 6.263l-1.7-1.702L2.356 5.8l2.938 2.938z"
+     id="path968"
+     style="fill:#2da44e;fill-opacity:1"
+     inkscape:export-filename="/Users/kyontan/Downloads/path968.png"
+     inkscape:export-xdpi="216.75"
+     inkscape:export-ydpi="216.75" />
+</svg>
