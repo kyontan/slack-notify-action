@@ -45,7 +45,7 @@ function generatePayload() {
         "elements": [
           {
             "type": "image",
-            "image_url": "https://raw.githubusercontent.com/kyontan/slack-notify-action/main/icons/GitHub-Mark-32px.png",
+            "image_url": "https://raw.githubusercontent.com/kyontan/slack-notify-action/main/assets/GitHub-Mark-32px.png",
             "alt_text": "github icon"
           },
           {
