@@ -6,7 +6,8 @@ function generatePayload() {
   const repo_url = `${github.context.serverUrl}/${github.repo.owner}/${github.repo.repo}`;
   const shart_short = github.context.sha.substring(0,7);
 
-  const job_status = github.context.job.status;
+  const job_context = JSON.parse(process.env.JOB_CONTEXT);
+  const job_status = job_context.status;
   let status_readable = job_status;
   if (job_status == 'success') {
     status_readable = "succeeded";
@@ -17,6 +18,7 @@ function generatePayload() {
   let detail = "";
   detail += `*Ref*: ${github.context.ref}\n`;
   detail += `*Workflow*: ${github.context.workflow}\n`;
+  detail += `*Job*: ${github.context.job}\n`;
   detail += `*Event*: ${github.context.eventName}\n`;
   detail += `*Actions URL*: ${repo_url}/actions/runs/${github.context.runId}\n`;
 
