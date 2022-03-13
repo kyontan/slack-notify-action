@@ -6,8 +6,7 @@ function generatePayload() {
   const repo_url = `${github.context.serverUrl}/${github.repo.owner}/${github.repo.repo}`;
   const shart_short = github.context.sha.substring(0,7);
 
-  const job_context = JSON.parse(process.env.JOB_CONTEXT);
-  const job_status = job_context.status;
+  const job_status = process.env.JOB_STATUS;
   let status_readable = job_status;
   if (job_status == 'success') {
     status_readable = "succeeded";

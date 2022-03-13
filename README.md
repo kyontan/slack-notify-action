@@ -26,6 +26,8 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+          JOB_STATUS: ${{ job.status }}
+
 ```
 
 ## Known limitation
