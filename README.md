@@ -27,3 +27,11 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
 ```
+
+## Known limitation
+
+This action currently does not support `cancelled` status notification.
+
+Maybe rewriting this action with JavaScript will resolve this.
+
+https://docs.github.com/ja/actions/creating-actions/metadata-syntax-for-github-actions#runspost
