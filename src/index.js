@@ -66,7 +66,7 @@ function generatePayload() {
 let coreWrapper = {
   getInput: function(key) {
     if (key == "payload") {
-      return generatePayload();
+      return JSON.stringify(generatePayload());
     }
     if (key == "payload-file-path") {
       return null;
