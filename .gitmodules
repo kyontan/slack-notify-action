@@ -1,0 +1,3 @@
+[submodule "src/slack-github-action"]
+	path = src/slack-github-action
+	url = https://github.com/slackapi/slack-github-action.git

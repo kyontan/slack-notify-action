@@ -1,53 +1,6 @@
 name: Notify to Slack
 description: "notify current job status to Slack"
 runs:
-  using: composite
-  steps:
-    - name: Set outputs (sha_short)
-      id: vars
-      run: echo "::set-output name=sha_short::$(echo ${GITHUB_SHA} | cut -c1-7)"
-      shell: bash
-    - name: Send a notification to Slack
-      uses: slackapi/slack-github-action@v1
-      with:
-        payload: |
-          {
-            "blocks": [
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "Workflow ${{( job.status == 'success' && 'succeeded') || ( job.status == 'failure' && 'failed') || job.status}}."
-                }
-              },
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "*Ref*: ${{github.ref_name}}\n*Workflow*: ${{github.workflow}}\n*Event*: ${{github.event_name}}\n*Actions URL*: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}"
-                }
-              },
-              {
-                "type": "divider"
-              },
-              {
-                "type": "context",
-                "elements": [
-                  {
-                    "type": "image",
-                    "image_url": "https://raw.githubusercontent.com/kyontan/slack-notify-action/main/icons/GitHub-Mark-32px.png",
-                    "alt_text": "github icon"
-                  },
-                  {
-                    "type": "image",
-                    "image_url": "https://raw.githubusercontent.com/kyontan/slack-notify-action/main/icons/${{ job.status }}.png",
-                    "alt_text": "status icon"
-                  },
-                  {
-                    "type": "mrkdwn",
-                    "text": "Commit: <https://github.com/${{github.repository}}/commit/${{ steps.vars.outputs.sha_short }}|${{ steps.vars.outputs.sha_short }}>"
-                  }
-                ]
-              }
-            ]
-          }
+  using: "node12"
+  main: "dist/index.js"
+  post: "dist/index.js"
