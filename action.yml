@@ -1,5 +1,5 @@
 name: Notify to Slack
-description: 'notify current job status to Slack'
+description: "notify current job status to Slack"
 runs:
   using: composite
   steps:
@@ -8,7 +8,7 @@ runs:
       run: echo "::set-output name=sha_short::$(echo ${GITHUB_SHA} | cut -c1-7)"
       shell: bash
     - name: Send a notification to Slack
-      uses: slackapi/slack-github-action@v1.18.0
+      uses: slackapi/slack-github-action@v1
       with:
         payload: |
           {
@@ -17,7 +17,7 @@ runs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "Workflow ${{( job.status == 'success' && 'succeeded') || 'failed'}}."
+                  "text": "Workflow ${{( job.status == 'success' && 'succeeded') || ( job.status == 'failure' && 'failed') || job.status}}."
                 }
               },
               {
@@ -35,12 +35,12 @@ runs:
                 "elements": [
                   {
                     "type": "image",
-                    "image_url": "https://raw.githubusercontent.com/kyontan/assets/main/icons/GitHub-Mark-32px.png",
+                    "image_url": "https://raw.githubusercontent.com/kyontan/slack-notify-action/main/icons/GitHub-Mark-32px.png",
                     "alt_text": "github icon"
                   },
                   {
                     "type": "image",
-                    "image_url": "https://raw.githubusercontent.com/kyontan/assets/main/icons/${{( job.status == 'success' && 'check-circle-fill') || 'x-circle-fill'}}.png",
+                    "image_url": "https://raw.githubusercontent.com/kyontan/slack-notify-action/main/icons/${{ job.status }}.png",
                     "alt_text": "status icon"
                   },
                   {
