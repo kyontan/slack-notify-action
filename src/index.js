@@ -50,7 +50,7 @@ function generatePayload() {
           },
           {
             "type": "image",
-            "image_url": `https://raw.githubusercontent.com/kyontan/slack-notify-action/main/icons/${github.context.job.status}.png`,
+            "image_url": `https://raw.githubusercontent.com/kyontan/slack-notify-action/main/assets/${github.context.job.status}.png`,
             "alt_text": "status icon"
           },
           {
