@@ -1,0 +1,52 @@
+name: Notify to Slack
+description: 'notify current job status to Slack'
+runs:
+  using: "composite"
+  steps:
+    - name: Set outputs (sha_short)
+      id: vars
+      run: echo "::set-output name=sha_short::$(echo ${GITHUB_SHA} | cut -c1-7)"
+    - name: Send a notification to Slack
+      uses: slackapi/slack-github-action@v1.18.0
+      with:
+        payload: |
+          {
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "Workflow ${{( job.status == 'success' && 'succeeded') || 'failed'}}."
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*Ref*: ${{github.ref_name}}\n*Workflow*: ${{github.workflow}}\n*Event*: ${{github.event_name}}\n*Actions URL*: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}"
+                }
+              },
+              {
+                "type": "divider"
+              },
+              {
+                "type": "context",
+                "elements": [
+                  {
+                    "type": "image",
+                    "image_url": "https://raw.githubusercontent.com/kyontan/assets/main/icons/GitHub-Mark-32px.png",
+                    "alt_text": "github icon"
+                  },
+                  {
+                    "type": "image",
+                    "image_url": "https://raw.githubusercontent.com/kyontan/assets/main/icons/${{( job.status == 'success' && 'check-circle-fill') || 'x-circle-fill'}}.png",
+                    "alt_text": "status icon"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "Commit: <https://github.com/${{github.repository}}/commit/${{ steps.vars.outputs.sha_short }}|${{ steps.vars.outputs.sha_short }}>"
+                  }
+                ]
+              }
+            ]
+          }
