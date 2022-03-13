@@ -88,5 +88,5 @@ if (onceExecuted == "") {
   core.info('This is not post run, skip notification');
 } else {
   core.info('This is post run, sending notification');
-  slackSend(core);
+  slackSend(coreWrapper);
 }
