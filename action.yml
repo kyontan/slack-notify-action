@@ -1,11 +1,12 @@
 name: Notify to Slack
 description: 'notify current job status to Slack'
 runs:
-  using: "composite"
+  using: composite
   steps:
     - name: Set outputs (sha_short)
       id: vars
       run: echo "::set-output name=sha_short::$(echo ${GITHUB_SHA} | cut -c1-7)"
+      shell: bash
     - name: Send a notification to Slack
       uses: slackapi/slack-github-action@v1.18.0
       with:
