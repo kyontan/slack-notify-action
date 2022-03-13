@@ -8,17 +8,20 @@ function generatePayload() {
 
   const job_status = process.env.JOB_STATUS;
   let status_readable = job_status;
+  let emoji = ":cloud:"
   if (job_status == 'success') {
     status_readable = "succeeded";
+    emoji = ":rainbow:";
   } else if (job_status == "failure") {
     status_readable = "failed";
+    emoji = ":umbrella:";
   }
 
+  const title = `${emoji} Workflow *${github.context.workflow}* ${status_readable}`;
+
   let detail = "";
-  detail += `*Ref*: ${github.context.ref}\n`;
-  detail += `*Workflow*: ${github.context.workflow}\n`;
   detail += `*Job*: ${github.context.job}\n`;
-  detail += `*Event*: ${github.context.eventName}\n`;
+  detail += `*Ref*: ${github.context.ref} (<${repo_url}/commit/${shart_short}|${shart_short}>)\n`;
   detail += `*Actions URL*: ${repo_url}/actions/runs/${github.context.runId}\n`;
 
   return {
@@ -27,7 +30,7 @@ function generatePayload() {
         "type": "section",
         "text": {
           "type": "mrkdwn",
-          "text": `Workflow ${status_readable}.`
+          "text": title
         }
       },
       {
@@ -55,7 +58,7 @@ function generatePayload() {
           },
           {
             "type": "mrkdwn",
-            "text": `Commit: <${repo_url}/commit/${shart_short}|${shart_short}>`
+            "text": `*Trigger event*: ${github.context.eventName}`
           }
         ]
       }
