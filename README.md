@@ -27,7 +27,7 @@ on:
   push: {}
 
 jobs:
-  edit-status:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Send notification to Slack
